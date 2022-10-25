@@ -6,7 +6,7 @@ export function groupBy(groupFn, list){
     const item = list[ i ]
     const key = groupFn(item)
 
-    if (!result[ key ]){
+    if (!(result[ key ] instanceof Array)){
       result[ key ] = []
     }
 
