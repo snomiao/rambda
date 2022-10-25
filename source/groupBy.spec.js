@@ -46,3 +46,11 @@ test('groupBy', () => {
   expect(groupBy(prop('age'))(list)).toEqual(expectedResult)
   expect(groupBy(prop('age'), list)).toEqual(expectedResult)
 })
+
+test('groupBy with key="constructor"', () => {
+  // groupBy "object.constructor" bug
+  // call groupBy() something include "constructor"
+  // at version rambda@7.3.0
+  // this test will got TypeError: result[key].push is not a function, because constructor is a prototype prop of object
+  expect(groupBy(prop('name'))([{name: "constructor"}])).toEqual({constructor: [{name: 'constructor'}]})
+})
